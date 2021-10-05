@@ -10,11 +10,11 @@ function error {
 }
 
 if ! command -v yad &>/dev/null;then
-  error "YAD needs to be installed to run pi-apps x86."
+  error "YAD needs to be installed to run nitely x86."
 fi
 
 #launch splash screen
-yad --undecorated --title=Pi-Apps x86 --image="${DIRECTORY}/icons/splashscreen.png" --center --no-buttons --skip-taskbar &
+yad --undecorated --title=Nitely x86 --image="${DIRECTORY}/icons/splashscreen.png" --center --no-buttons --skip-taskbar &
 splashpid=$!
 
 #for the text_editor(), runonce() and app_status() functions
@@ -195,7 +195,7 @@ while true;do
         "--button=!${DIRECTORY}/icons/info.png!Details:0" )
       fi
       
-      output="$(echo -e "$LIST" | yad --center --title='Pi-Apps x86'"$([ ! -z "$prefix" ] && echo ": $(echo "$prefix" | tr '/' '>')")" --width=310 --height=400 --no-headers \
+      output="$(echo -e "$LIST" | yad --center --title='Nitely x86'"$([ ! -z "$prefix" ] && echo ": $(echo "$prefix" | tr '/' '>')")" --width=310 --height=400 --no-headers \
         --text="$([ -z "$prefix" ] && echo "$motd" || echo "Viewing $(echo "$prefix" | tr '/' '>') category")" --image="${DIRECTORY}/icons/logo-64.png" --image-on-top \
         --list --multiple --separator='\n' --window-icon="${DIRECTORY}/icons/logo.png" \
         --column=:IMG --column=:IMG --column=Name --column=Sysname:HD --column=tip:HD \
@@ -214,7 +214,7 @@ while true;do
       fi
       if [ -z "$output" ] && [ "$button" != 6 ];then
         echo "output variable empty!"
-        yad --center --title='Pi-Apps x86' --width=310 \
+        yad --center --title='Nitely x86' --width=310 \
           --window-icon="${DIRECTORY}/icons/logo.png" \
           --text="Mind reading is not supported.
     (You didn"\'"t select an App)" \
@@ -305,7 +305,7 @@ $LIST"
       if [ "$guimode" == xlunch-light-3d ];then
         #light mode
         output="$(echo -e "$LIST" | xlunch -WoCS -s 64 --bc e0e0e000 --tc 000000 --pc 6060ffff --hc ffffff50 \
-          -p "$searchbox" -a -c $([ $width -lt 550 ] && echo 1 || echo 2) --title "Pi-Apps x86: A Debian app store" \
+          -p "$searchbox" -a -c $([ $width -lt 550 ] && echo 1 || echo 2) --title "Nitely x86: A Debian app store" \
           --icon "${DIRECTORY}/icons/logo.png" --scrollbarcolor ffffff40 --scrollindicatorcolor 0000ff80 \
           --width $width --height $height --xposition $xposition --yposition $yposition \
           --button "${DIRECTORY}/icons/logo-3d.png;;$((($width/2)-(300/2))),0;pi-apps-homepage1" \
@@ -314,7 +314,7 @@ $LIST"
       elif [ "$guimode" == xlunch-dark-3d ];then
         #dark mode, 3d opaque version
         output="$(echo -e "$LIST" | xlunch -WoCS -s 64 --bc 2F313600 --tc DCDDDE --pc ffffffa0 --hc ffffff30 \
-          -p "$searchbox" -a -c $([ $width -lt 550 ] && echo 1 || echo 2) --title "Pi-Apps x86: A Debian app store" \
+          -p "$searchbox" -a -c $([ $width -lt 550 ] && echo 1 || echo 2) --title "Nitely x86: A Debian app store" \
           --icon "${DIRECTORY}/icons/logo.png" --scrollbarcolor ffffff20 --scrollindicatorcolor ffffff40 \
           --width $width --height $height --xposition $xposition --yposition $yposition \
           --button "${DIRECTORY}/icons/logo-3d-dark.png;;$((($width/2)-(300/2))),0;pi-apps-homepage1" \
@@ -323,7 +323,7 @@ $LIST"
       else
         #dark mode, transparent version
         output="$(echo -e "$LIST" | xlunch -WoCS -s 64 --bc 000000A0 --tc ffffffff --pc 6060ffff --hc 60606010 \
-          -p "$searchbox" -a -c $([ $width -lt 550 ] && echo 1 || echo 2) --title "Pi-Apps x86: A Debian app store" \
+          -p "$searchbox" -a -c $([ $width -lt 550 ] && echo 1 || echo 2) --title "Nitely x86: A Debian app store" \
           --icon "${DIRECTORY}/icons/logo.png" --scrollbarcolor ffffff40 --scrollindicatorcolor 0000ff80 \
           --width $width --height $height --xposition $xposition --yposition $yposition \
           --button "${DIRECTORY}/icons/logo-128-trans.png;;$((($width/2)-(128/2))),0;pi-apps-homepage1" \
@@ -339,7 +339,7 @@ $LIST"
       
       #homepage button
       if [ "$output" == 'pi-apps-homepage1' ];then
-        chromium-browser https://github.com/Botspot/pi-apps &
+        chromium-browser https://github.com/C-EO/nitely &
         output=''
       fi
     else
@@ -426,7 +426,7 @@ This app installed these packages: $(cat "${DIRECTORY}/data/installed-packages/$
       fi
       if [ -f "${DIRECTORY}/apps/${output}/credits" ];then
         #if credits file exists, display credits button
-        whichbutton+=("--button=Credits!!See who made the app and who put it on Pi-Apps:10")
+        whichbutton+=("--button=Credits!!See who made the app and who put it on Nitely:10")
       fi
       #display buttons based on app's status file
       if [ "$(app_status "${output}")" == 'installed' ];then
